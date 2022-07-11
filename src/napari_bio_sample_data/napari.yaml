@@ -1,0 +1,30 @@
+name: napari-bio-sample-data
+display_name: napari bio sample data
+contributions:
+  commands:
+    - id: napari-bio-sample-data.tomo_data
+      python_name: napari_bio_sample_data._sample_data:tomo_data
+      title: Load data
+    - id: napari-bio-sample-data.skin_data
+      python_name: napari_bio_sample_data._sample_data:skin_data
+      title: Load data
+    - id: napari-bio-sample-data.nuclei_data
+      python_name: napari_bio_sample_data._sample_data:nuclei_data
+      title: Load data    
+    - id: napari-bio-sample-data.timelapse_data
+      python_name: napari_bio_sample_data._sample_data:timelapse_data
+      title: Load data
+  sample_data:
+    - command: napari-bio-sample-data.tomo_data
+      display_name: 3D cryo-tomography
+      key: unique_id.0
+    - command: napari-bio-sample-data.skin_data
+      display_name: 2D skin HE
+      key: unique_id.1
+    - command: napari-bio-sample-data.nuclei_data
+      display_name: 3D nuclei
+      key: unique_id.2
+    - command: napari-bio-sample-data.timelapse_data
+      display_name: 2D cell timelapse
+      key: unique_id.3
+
