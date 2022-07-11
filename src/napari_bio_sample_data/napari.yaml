@@ -14,6 +14,9 @@ contributions:
     - id: napari-bio-sample-data.timelapse_data
       python_name: napari_bio_sample_data._sample_data:timelapse_data
       title: Load data
+    - id: napari-bio-sample-data.large_data
+      python_name: napari_bio_sample_data._sample_data:large_data
+      title: Load data
   sample_data:
     - command: napari-bio-sample-data.tomo_data
       display_name: 3D cryo-tomography
@@ -27,4 +30,6 @@ contributions:
     - command: napari-bio-sample-data.timelapse_data
       display_name: 2D cell timelapse
       key: unique_id.3
-
+    - command: napari-bio-sample-data.large_data
+      display_name: large multi-resolution 3D EM
+      key: unique_id.4

@@ -3,8 +3,6 @@ import numpy as np
 from skimage.io import imread
 from napari.utils import io
 
-#to do: large EM dataset
-
 #to do: add metadata
 
 #EM dataset (image + points + vectors)
@@ -18,7 +16,7 @@ def tomo_data() -> List[LayerData]:
 def skin_data() -> List[LayerData]:
     img = imread('./sample_images/skin.tif')
     shapes, shape_type, shape = io.csv_to_layer_data('./sample_images/skin_shape.csv')
-    return [(img, {"name": "skin"}),(shapes, {"shape_type": shape_type['shape_type'], "name": "skin shape", "edge_width": 3, "edge_color": "black"}, "shapes")] 
+    return [(img, {"name": "skin"}),(shapes, {"shape_type": shape_type['shape_type'], "name": "skin shape", "edge_width": 3, "edge_color": "green"}, "shapes")] 
 
 #3D nuclei dataset (image + label + surface)
 #surface layer saved by:
@@ -37,3 +35,17 @@ def timelapse_data() -> List[LayerData]:
     point = np.load('./sample_images/timelapse_point.npy')
     track = np.load('./sample_images/timelapse_track.npy')
     return [(img, {"name": "2D timelapse"}),(point, {"name": "2D timelapse point"}, "points"),(track, {"name": "2D timelapse track"}, "tracks")]
+
+#large multi-resolution EM dataset from janelia
+import fsspec, zarr
+import dask.array as da
+
+def large_data() -> List[LayerData]:
+    group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5', anon=True)) # access the root of the n5 container
+    zdata = group['em/fibsem-uint16/s5'] # s0 is the the full-resolution data, use s5
+
+    ddata = [
+            da.from_zarr(group[f'em/fibsem-uint16/s{i}'], chunks=zdata.chunks)
+            for i in range(3, 5)
+    ]
+    return [(zdata, {"name": "multi-res"})]
