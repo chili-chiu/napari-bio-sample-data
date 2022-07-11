@@ -2,6 +2,9 @@ from __future__ import annotations
 import numpy as np
 from skimage.io import imread
 from napari.utils import io
+import fsspec
+import zarr
+import dask.array as da
 
 #to do: add metadata
 
@@ -37,15 +40,15 @@ def timelapse_data() -> List[LayerData]:
     return [(img, {"name": "2D timelapse"}),(point, {"name": "2D timelapse point"}, "points"),(track, {"name": "2D timelapse track"}, "tracks")]
 
 #large multi-resolution EM dataset from janelia
-import fsspec, zarr
-import dask.array as da
 
 def large_data() -> List[LayerData]:
-    group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5', anon=True)) # access the root of the n5 container
-    zdata = group['em/fibsem-uint16/s5'] # s0 is the the full-resolution data, use s5
-
-    ddata = [
-            da.from_zarr(group[f'em/fibsem-uint16/s{i}'], chunks=zdata.chunks)
-            for i in range(3, 5)
-    ]
-    return [(zdata, {"name": "multi-res"})]
+    group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5')) # access the root of the n5 container
+    zdata = group['em/fibsem-uint16/s4'] # s0 is the the full-resolution data, use s4
+    ddata = da.from_array(zdata, chunks=zdata.chunks)
+    result = ddata[0].compute()
+ 
+    # ddata = [
+    #         da.from_zarr(group[f'em/fibsem-uint16/s{i}'], chunks=zdata.chunks)
+    #         for i in range(3, 5)
+    # ]
+    return [(result, {"name": "multi-res"})]
