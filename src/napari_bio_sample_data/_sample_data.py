@@ -24,7 +24,6 @@ def skin_data() -> List[LayerData]:
 #3D nuclei dataset (image + label + surface)
 #surface layer saved by:
 #np.savez('nuclei_surface.npz',*data)
-
 def nuclei_data() -> List[LayerData]:
     img = imread('./sample_images/nuclei.tif')
     label = imread('./sample_images/nuclei_label.tif')
@@ -40,15 +39,15 @@ def timelapse_data() -> List[LayerData]:
     return [(img, {"name": "2D timelapse"}),(point, {"name": "2D timelapse point"}, "points"),(track, {"name": "2D timelapse track"}, "tracks")]
 
 #large multi-resolution EM dataset from janelia
-
+#requires zarr 2.12.0 (2.6.1 doesn't work) and s3fs
 def large_data() -> List[LayerData]:
-    group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5')) # access the root of the n5 container
-    zdata = group['em/fibsem-uint16/s4'] # s0 is the the full-resolution data, use s4
-    ddata = da.from_array(zdata, chunks=zdata.chunks)
-    result = ddata[0].compute()
- 
-    # ddata = [
-    #         da.from_zarr(group[f'em/fibsem-uint16/s{i}'], chunks=zdata.chunks)
-    #         for i in range(3, 5)
-    # ]
-    return [(result, {"name": "multi-res"})]
+    group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5', anon=True)) # access the root of the n5 container
+    
+    zdata = group['em/fibsem-uint16/s2'] # s0 is the the full-resolution data, use s2
+    
+    # create a 2-level resolution image using s2 and s3
+    ddata = [
+            da.from_zarr(group[f'em/fibsem-uint16/s{i}'], chunks=zdata.chunks)
+            for i in range(2, 4)
+    ]
+    return [(ddata, {"name": "multi-res","multiscale": True, "contrast_limits": (18000, 35000)})]
