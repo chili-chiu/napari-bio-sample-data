@@ -10,6 +10,28 @@
 a sample data plugin for bio-related demos
 
 ----------------------------------
+This plugin contains 5 sample datasets with additional napari layer types:
+
+(1) 3D EM dataset (image + points + vectors)
+Image credit: Alister Burt
+The [original data](https://github.com/alisterburt/napari-cryo-et-demo) is down-sampled to have smaller file size.
+
+(2) 2D skin RGB dataset (image + shape)
+Image credit: skimage.data.skin
+
+(3) 3D nuclei dataset (image + label + surface)
+Image credit: skimage.data.cells3d
+
+(4) 2D timelapse dataset (image + points + tracks)
+Image credit: [Cell Tracking Challenge](http://celltrackingchallenge.net/2d-datasets/)
+The original data is cropped to have smaller file size.
+
+(5) large multi-resolution 3D EM dataset
+Image credit: [Janelia Open Organelle](https://openorganelle.janelia.org/datasets/jrc_hela-1) 
+This plugin only accesses 2 lower resolution levels.
+
+Datasets (1)-(4) are stored locally. 
+Dataset (5) is downloaded and temporarily stored on RAM when accessed.  
 
 This [napari] plugin was generated with [Cookiecutter] using [@napari]'s [cookiecutter-napari-plugin] template.
 
