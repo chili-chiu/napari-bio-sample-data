@@ -3,8 +3,6 @@
 [![License](https://img.shields.io/pypi/l/napari-bio-sample-data.svg?color=green)](https://github.com/chili-chiu/napari-bio-sample-data/raw/main/LICENSE)
 [![PyPI](https://img.shields.io/pypi/v/napari-bio-sample-data.svg?color=green)](https://pypi.org/project/napari-bio-sample-data)
 [![Python Version](https://img.shields.io/pypi/pyversions/napari-bio-sample-data.svg?color=green)](https://python.org)
-[![tests](https://github.com/chili-chiu/napari-bio-sample-data/workflows/tests/badge.svg)](https://github.com/chili-chiu/napari-bio-sample-data/actions)
-[![codecov](https://codecov.io/gh/chili-chiu/napari-bio-sample-data/branch/main/graph/badge.svg)](https://codecov.io/gh/chili-chiu/napari-bio-sample-data)
 [![napari hub](https://img.shields.io/endpoint?url=https://api.napari-hub.org/shields/napari-bio-sample-data)](https://napari-hub.org/plugins/napari-bio-sample-data)
 
 a sample data plugin for bio-related demos
