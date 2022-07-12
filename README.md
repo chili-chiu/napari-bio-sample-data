@@ -12,9 +12,8 @@ a sample data plugin for bio-related demos
 ----------------------------------
 This plugin contains 5 sample datasets with additional napari layer types:
 
-(1) 3D EM dataset (image + points + vectors)
-
-Image credit: Alister Burt
+(1) 3D EM dataset (image + points + vectors)  
+Image credit: Alister Burt  
 The [original data](https://github.com/alisterburt/napari-cryo-et-demo) is down-sampled to have smaller file size.
 
 (2) 2D skin RGB dataset (image + shape)  
