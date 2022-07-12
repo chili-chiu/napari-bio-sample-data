@@ -52,7 +52,10 @@ You can install `napari-bio-sample-data` via [pip]:
 
     pip install napari-bio-sample-data
 
-
+Once installed, it should show up under File > Open Sample > napari-bio-sample-data.  
+After clicking on a dataset, you may receive the following error:   
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/anaconda3/envs/napari-latest/lib/python3.9/sample_images/nuclei.tif'
+The sample data folder needs to be manually copied.
 
 To install latest development version :
 
