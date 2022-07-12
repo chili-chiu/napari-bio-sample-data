@@ -41,7 +41,7 @@ def timelapse_data() -> List[LayerData]:
     return [(img, {"name": "2D timelapse"}),(point, {"name": "2D timelapse point"}, "points"),(track, {"name": "2D timelapse track"}, "tracks")]
 
 #large multi-resolution EM dataset from janelia
-#requires zarr 2.12.0 (2.6.1 doesn't work) and s3fs
+#requires zarr 2.12.0 (2.6.1 doesn't work, missing N5FSStore) and s3fs
 def large_data() -> List[LayerData]:
     group = zarr.open(zarr.N5FSStore('s3://janelia-cosem-datasets/jrc_hela-2/jrc_hela-2.n5', anon=True)) # access the root of the n5 container
     
