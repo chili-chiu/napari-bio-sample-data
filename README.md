@@ -13,23 +13,27 @@ a sample data plugin for bio-related demos
 This plugin contains 5 sample datasets with additional napari layer types:
 
 (1) 3D EM dataset (image + points + vectors)
-
 Image credit: Alister Burt
 The [original data](https://github.com/alisterburt/napari-cryo-et-demo) is down-sampled to have smaller file size.
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/89602983/178569428-7daa2eb8-a3ff-4c0e-8e5f-4f615a55684f.png">
 
 (2) 2D skin RGB dataset (image + shape)  
 Image credit: skimage.data.skin  
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/89602983/178569580-bf77e55c-71cc-4883-9fe5-ed94e05f2a29.png">
   
 (3) 3D nuclei dataset (image + label + surface)  
 Image credit: skimage.data.cells3d  
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/89602983/178569701-7c9b1cc3-c1c3-4e54-8ca0-fb2b530f858e.png">
 
 (4) 2D timelapse dataset (image + points + tracks)  
 Image credit: [Cell Tracking Challenge](http://celltrackingchallenge.net/2d-datasets/)  
 The original data is cropped to have smaller file size.  
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/89602983/178569846-b995d1cb-c1ec-4363-ba1a-71243ffea4e0.png">
 
 (5) large multi-resolution 3D EM dataset  
 Image credit: [Janelia Open Organelle](https://openorganelle.janelia.org/datasets/jrc_hela-1)   
 This plugin only accesses 2 lower resolution levels.  
+<img width="300" alt="image" src="https://user-images.githubusercontent.com/89602983/178570136-6f59ba3c-d687-446c-9f5e-1df567a62948.png">
 
 Datasets (1)-(4) are stored locally.   
 Dataset (5) is downloaded and temporarily stored on RAM when accessed.    
